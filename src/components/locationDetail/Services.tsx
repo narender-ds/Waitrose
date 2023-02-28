@@ -9,10 +9,11 @@ var array: any = ["Promotions", "Pizza", "Starters", "Beverages", "Desserts"];
 type services = {
   c_menuitems: any;
   title: any;
+  Name:any;
 };
 
 export default function Storefacility(props: services) {
-  const { c_menuitems, title } = props;
+  const { c_menuitems, title,Name } = props;
   return (
     <>
     
@@ -28,12 +29,13 @@ export default function Storefacility(props: services) {
               return (
                 <>
                   <div className="boxes-fac">
-                    <div className="img-item">
-                      {i.menuIcon.map((n: any) => {
+                    {/* <div className="img-item"> */}
+                    <img className="bg-[#FFFFFF] " style={{width:"100%"}} src={i.url}></img>
+                      {/* {i.menuIcon.map((n: any) => {
                         return <img className="bg-[#FFFFFF]" src={n.url}></img>;
-                      })}
-                    </div>
-                    <h5>{i.menuTitle ? i.menuTitle : array[index]}</h5>
+                      })} */}
+                    {/* </div> */}
+                    <h6>{i.menuTitle ? i.menuTitle : Name[index]}</h6>
                   </div>
                 </>
               );

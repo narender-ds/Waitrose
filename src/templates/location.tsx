@@ -108,7 +108,17 @@ export const config: TemplateConfig = {
       "dm_directoryParents.slug",
       "dm_directoryParents.meta.entityType",
       "dm_directoryParents.c_addressRegionDisplayName",
-
+      //about section
+      "c_aboutData",
+      "photoGallery",
+      "c_photoGalleryTitle",
+      //faq section
+      "c_faqRelation.name",
+      "c_faqRelation.answer",
+      "c_faqTitle",
+      "c_categoryName",
+      "c_categoryItemPhoto",
+      "c_categoryTitle",
     ],
     // Defines the scope of entities that qualify for this stream.
     filter: {
@@ -122,7 +132,6 @@ export const config: TemplateConfig = {
   },
 };
 
-
 export const getPath: GetPath<TemplateProps> = ({ document }) => {
   var url = "";
   var name: any = document.name.toLowerCase();
@@ -130,9 +139,9 @@ export const getPath: GetPath<TemplateProps> = ({ document }) => {
   let result: any = string.replaceAll(" ", "-");
   document.dm_directoryParents.map((result: any, i: Number) => {
     if (i > 0) {
-      url += result.slug + "/"
+      url += result.slug + "/";
     }
-  })
+  });
   if (!document.slug) {
     url += `${result}.html`;
   } else {
@@ -145,7 +154,6 @@ export const getPath: GetPath<TemplateProps> = ({ document }) => {
 export const getRedirects: GetRedirects<TemplateProps> = ({ document }) => {
   return [`index-old/${document.id}`];
 };
-
 
 export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = ({
   relativePrefixToRoot,
@@ -320,7 +328,15 @@ const Location: Template<ExternalApiRenderData> = ({
     c_bannerPhoto,
     c_bannerCta,
     c_bannerSlogan,
-    c_promotionBanner
+    c_promotionBanner,
+    c_aboutData,
+    photoGallery,
+    c_photoGalleryTitle,
+    c_faqRelation,
+    c_faqTitle,
+    c_categoryName,
+    c_categoryItemPhoto,
+    c_categoryTitle,
   } = document;
   console.log("first===>", externalApiData);
   // console.log("c_locationServicesData", c_locationServicesData);
@@ -487,17 +503,21 @@ const Location: Template<ExternalApiRenderData> = ({
       >
         {" "}
         <AnalyticsScopeProvider name={""}>
-          <PageLayout global={_site}>
-          <BannerSlide timezone={timezone} hours={hours} name={name} BackgroundImage={c_bannerPhoto}  c_cTAForBanner={c_bannerCta} c_bannerSlogan={c_bannerSlogan}/>
+          <PageLayout
+            global={_site}
+            timezone={timezone}
+            hour={hours}
+            name={name}
+          >
             <div className="container">
-            <div className='banner-text banner-dark-bg justify-center text-center'>
+              <div className="banner-text banner-dark-bg justify-center text-center">
                 {/* <h1 className="">Welcome to {name}</h1> */}
                 <div className="openClosestatus detail-page closeing-div">
-                {/* <OpenClose timezone={timezone} hours={hours} /> */}
+                  {/* <OpenClose timezone={timezone} hours={hours} /> */}
                 </div>
               </div>
             </div>
-            
+
             {/* <BreadCrumbs
               name={name}
               parents={dm_directoryParents}
@@ -505,7 +525,7 @@ const Location: Template<ExternalApiRenderData> = ({
             ></BreadCrumbs> */}
             <div className="location-information">
               <Contact
-              c_locationPhoto={c_locationPhoto}
+                c_locationPhoto={c_locationPhoto}
                 address={address}
                 phone={mainPhone}
                 latitude={
@@ -545,32 +565,30 @@ const Location: Template<ExternalApiRenderData> = ({
                   />
                 </div>
               )}
-            </div> 
-
+            </div>
+            <div className="container-custom mx-auto">
+              <About c_aboutData={c_aboutData} />
+            </div>
+            <div className="container">
+            <div className="mt-[80px] ">
+              <Services
+                c_menuitems={c_categoryItemPhoto}
+                Name={c_categoryName}
+                title={c_categoryTitle}
+              />
+            </div>
+            </div>
             {/* <PhotoSlider
                   photoGallery={c_photoForDetail}
                   PhotoGallarytitle={c_titleForPhotoGallery}
                 /> */}
-            {/* <div className="gallery-sec">
+            <div className="gallery-sec">
               <PhotoSlider
-                photos={c_photoForDetail}
-                PhotoGallarytitle={c_titleForPhotoGallery}
+                photos={photoGallery}
+                PhotoGallarytitle={c_photoGalleryTitle}
               />
             </div>
-            <div className="mt-[80px] ">
-              <Services
-                c_menuitems={c_allMenuItem}
-                title={c_titleForAllMenus}
-              />
-            </div>
-            <div className="container-custom mx-auto">
-              <About
-                c_aboutData={c_surveyDescription}
-                photo={c_surveyPhoto}
-                title={c_surveyTitle}
-                Cta={c_cTAForSurvey}
-              />
-            </div> */}
+
             {/* <div className="flex w-full mt-[140px]">
                   <PhotoSlider photoGallery={_site.c_imageForBanner} />
                   <div className="flex w-1/2 flex-col">
@@ -585,10 +603,10 @@ const Location: Template<ExternalApiRenderData> = ({
                     </Link>
                   </div>
                 </div> */}
-             {StoreHighlight ? (
+            {StoreHighlight ? (
               <div className="services-sec">
                 <StoreHighlight
-                name={name}
+                  name={name}
                   storeHighlights={c_productHighLights}
                   title={c_productsTitle}
                   c_localProducts={c_localProducts}
@@ -597,7 +615,7 @@ const Location: Template<ExternalApiRenderData> = ({
             ) : (
               ""
             )}
-{/*
+
             <div className="container-custom mx-auto">
               <FaqAccordian Question={c_faqRelation} Title={c_faqTitle} />
             </div>
@@ -622,7 +640,7 @@ const Location: Template<ExternalApiRenderData> = ({
                   </div>
                 </div>
               </div>
-            </div> */}
+            </div>
           </PageLayout>
         </AnalyticsScopeProvider>
       </AnalyticsProvider>

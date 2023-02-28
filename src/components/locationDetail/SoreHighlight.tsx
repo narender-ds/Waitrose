@@ -36,7 +36,7 @@ export default function StoreHighlight(props: Data) {
       <div className="container-custom mx-auto ">
        {storeHighlights ? <div className="sec-title">
           <h2>{name} {storeHighlights.productTitle} </h2>
-          <h4>{storeHighlights.productDesciption}</h4>
+          {/* <h4>{storeHighlights.productDesciption}</h4> */}
         </div> : ""}
 
         <div className="services-inner">

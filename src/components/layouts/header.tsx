@@ -1,6 +1,6 @@
 import * as React from "react";
 import Cta from "../commons/cta";
-import heartsvg from "../../images/heartsvg.svg"
+import heartsvg from "../../images/heartsvg.svg";
 // import Cta from "../components/cta";
 
 type DataOfProps = {
@@ -17,7 +17,7 @@ const Header = (props: DataOfProps) => {
 
   return (
     <>
-      <div className="inline-block w-full  text-black">
+      <div className="inline-block w-full  text-#777">
         <div className="container px-6 pt-6">
           <nav className="py-6 flex items-center justify-between">
             {c_headerNav.headerExploreTtile}
@@ -44,26 +44,23 @@ const Header = (props: DataOfProps) => {
             >"sdgsdgg"</button> */}
             </div>
           </nav>
-          <div className="flex">
-            {/* <div className="text-2xl font-semibold"></div> */}
-            <nav className="py-3 flex items-center justify-between">
-              {/* <div className="keyline-bottom clearfix shopping-bar">  */}
-              <div className="headerLogo">
-                <img src={c_headerMain.headerLogo.url} />
-              </div>
-              <div className="flex gap-x-10 text-lg font-semibold"></div>
-              <button className="btnforbookSlot">
+
+          <div className="headerMainDiv py-3">
+            <div className="flex justify-between items-center">
+              <img className="h-10" src={c_headerMain.headerLogo.url} />
+            </div>
+            <div className="">
+              <button className="border border-[#6A8B2B] py-2 px-4 mr-3">
+                {" "}
                 {c_bookASlotCta.label}
               </button>
-
-              <a href="" className="book a slot">
+              <button className="border border-[#6A8B2B] py-2 px-4">
+                {" "}
                 {c_myTrolleyCta.label}
-              </a>
-
-              {/* </div> */}
-            </nav>
+              </button>
+            </div>
           </div>
-          <div className="space-x-20 flex">
+          {/* <div className="space-x-20 flex">
             <button className="btnforheader">
               {c_headerMain.headerBrowseCta.label}
             </button>
@@ -86,6 +83,25 @@ const Header = (props: DataOfProps) => {
                 </>
               );
             })}
+          </div> */}
+          <div className="py-[6px] flex items-center">
+            <div className="btnforheader">
+              <button className="">{c_headerMain.headerBrowseCta.label}</button>
+            </div>
+            <div className="border-[black] h-10 ml-5">
+              <input className="searchforHeader" placeholder="Search" />
+            </div>
+            <div className="flex gap-14 right-5 absolute">
+              {c_headerMain.headerLabels.map((item: any) => {
+                return (
+                  <>
+                    <ul className="flex gap-12">
+                      <li>{item.label}</li>
+                    </ul>
+                  </>
+                );
+              })}
+            </div>
           </div>
         </div>
       </div>

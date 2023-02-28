@@ -26,6 +26,7 @@ type bannerData = {
 // };
 
 const BannerSlide = (props: bannerData) => {
+
   const {
     name,
     BackgroundImage,
@@ -38,7 +39,7 @@ const BannerSlide = (props: bannerData) => {
     cid: "dc6937a6-345d-4c0f-b63f-79be3c29d7bc",
     cv: "3",
   };
-  console.log("item", c_bannerSlogan);
+  console.log("timezone", timezone);
   return (
     <>
       <div className="hero">

@@ -6,20 +6,25 @@ import PhotoSlider from "./PhotoSlider";
 import { svgIcons } from "../svgIcon";
 
 export default function About(props: any) {
-  const { c_aboutData, photo, title, Cta } = props;
+  const { c_aboutData } = props;
   return (
     <>
       {c_aboutData ? (
         <div className=" py-10">
           <div className="container mx-auto ab-secmain flex flex-wrap items-center">
             <div className="w-full md:w-1/2 px-5">
-              <img style={{ height: "80%", width: "80%" }} src={photo.url} />
+              <img
+                style={{ height: "80%", width: "80%" }}
+                src={c_aboutData.aboutImage.url}
+              />
             </div>
             <div className="w-full md:w-1/2 about-sec px-5">
-              <h3 className="font-bold text-2xl sec_heading">{title}</h3>
-              <p> {c_aboutData}</p>
+              <h3 className="font-bold text-2xl sec_heading">
+                {c_aboutData.aboutTitle}
+              </h3>
+              <p> {c_aboutData.aboutDesciption}</p>
               {/*  */}
-              {Cta ? (
+              {c_aboutData.aboutCta ? (
                 <>
                   <Link
                     style={{
@@ -30,18 +35,18 @@ export default function About(props: any) {
                     }}
                     className="bg-[#0f9675] hover:bg-[#ab131b] text-white rounded w-[calc(50%_-_5px)] xl:w-[170px] transition-all duration-300"
                     href={
-                      Cta.linkType == "PHONE"
-                        ? `tel:${Cta.link}`
-                        : Cta.linkType == "EMAIL"
-                        ? `mailto:${Cta.link}`
-                        : Cta.link
+                      c_aboutData.aboutCta.linkType == "PHONE"
+                        ? `tel:${c_aboutData.aboutCta.link}`
+                        : c_aboutData.aboutCta.linkType == "EMAIL"
+                        ? `mailto:${c_aboutData.aboutCta.link}`
+                        : c_aboutData.aboutCta.link
                     }
                     target={
-                      Cta.linkType == "PHONE"
+                      c_aboutData.aboutCta.linkType == "PHONE"
                         ? "_self"
-                        : Cta.linkType == "URL"
+                        : c_aboutData.aboutCta.linkType == "URL"
                         ? "_self"
-                        : Cta.linkType == "OTHER"
+                        : c_aboutData.aboutCta.linkType == "OTHER"
                         ? "_blank"
                         : "_self"
                     }
@@ -50,7 +55,9 @@ export default function About(props: any) {
                     // conversionDetails={conversionDetails_phone}
                     data-ya-track="seocta"
                   >
-                    {Cta.link?(Cta.label):""}
+                    {c_aboutData.aboutCta.link
+                      ? c_aboutData.aboutCta.label
+                      : ""}
                   </Link>
                 </>
               ) : (
